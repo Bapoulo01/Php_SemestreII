@@ -9,9 +9,8 @@ class ClientController {
 
     public function __construct() {
         $this->clientModel = new ClientModel();
-    }
-    public function index() {
+        $this->load();
 
-        
     }
+
 }

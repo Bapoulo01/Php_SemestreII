@@ -29,7 +29,7 @@
                     <div class="flex align-center justify-around w-full h-24">
                         <img src="../public/assets/user.png" class="bg-blue-50 w-24 h-24 rounded-full mt-2"></img>
                         <div class="w-64 h-24 mt-2 flex-col">
-                            <h5>Prenom: Amadou </h5>
+                            <h5>Prenom : Amadou </h5>
                             <h5>Nom: Ba </h5>
                             <h5>Tel: 778087261 </h5>
                             <h5>Adresse: Keur Massar </h5>
@@ -45,24 +45,25 @@
                 </div>
                 <div class="w-1/2 h-48 border border-gray-200 rounded-lg shadow mx-3 flex-col ">
                     <h5></h5>
-                    <form class="flex items-center px-5 py-0 flex-col">
-                        <div class="flex w-full align-center justify-center mt-2">
+                    <form action="<?= WEBROOT?>" method="post" class="flex items-center px-5 py-0 flex-col">
+                        <!-- <div class="flex w-full align-center justify-center mt-2">
                             <label for="" class="text-black-900 px-6 mt-3">Montant Du</label>
                             <div class="relative w-64 mt-2">
                                 <input type="text" id="simple-search"
-                                    class=" border bg-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    disabled />
+                                    class=" border bg-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
-                        </div>
+                        </div> -->
                         <div class="flex w-full align-center justify-center mt-2">
                             <label for="" class="text-black-900 px-6 mt-3 mx-3">Montant</label>
                             <div class="relative w-64 mt-2">
-                                <input type="text" id="simple-search"
+                                <input type="text" id="simple-search" name="montantpay"
                                     class=" border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                             </div>
                         </div>
+                        <input type="hidden" name="idd" value="<?=$_REQUEST["idd"]?>" >
+                        <input type="hidden" name="controller" value="paiement">
                         <div class="w-full flex align-center justify-center py-3">
-                            <button type="button"
+                            <button type="submit" name="action" value="paiement"
                                 class="w-48  text-white bg-sky-900  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Enregistrer</button>
                         </div>
                     </form>
@@ -90,14 +91,15 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php foreach ($datas as $data):?>
                                 <tr
                                     class=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                                     <th scope="row"
                                         class="px-6 py-1.5 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Article1
+                                        <?=$data->libelle?>
                                     </th>
                                     <td class="px-6 py-1.5 ">
-                                        1.000
+                                    <?=$data->prix_unitaire?>
                                     </td>
                                     <td class="px-6 py-1.5">
                                         03
@@ -106,46 +108,14 @@
                                         3.000
                                     </td>
                                 </tr>
-                                <tr
-                                    class=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                                    <th scope="row"
-                                        class="px-6 py-1.5 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Article1
-                                    </th>
-                                    <td class="px-6 py-1.5 ">
-                                        1.000
-                                    </td>
-                                    <td class="px-6 py-1.5">
-                                        03
-                                    </td>
-                                    <td class="px-6 py-1.5">
-                                        3.000
-                                    </td>
-                                </tr>
-                                <tr
-                                    class=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                                    <th scope="row"
-                                        class="px-6 py-1.5 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Article1
-                                    </th>
-                                    <td class="px-6 py-1.5 ">
-                                        1.000
-                                    </td>
-                                    <td class="px-6 py-1.5">
-                                        03
-                                    </td>
-                                    <td class="px-6 py-1.5">
-                                        3.000
-                                    </td>
-                                </tr>
-
+                                <?php endforeach;?>  
                             </tbody>
                         </table>
 
                         <div class="w-full flex py-3 px-6 mt-3">
                             <button type="button"
                                 class="w-48  text-white bg-sky-900  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Somme
-                                Total 10.000</button>
+                                Total:</button>
                         </div>
                     </div>
                 </div>
@@ -172,15 +142,14 @@
                             <tbody>
                                 <tr
                                     class=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                                    <th scope="row"
-                                        class="px-4 py-1.5 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Ref0001
+                                    <th scope="row" class="px-4 py-1.5 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        <?=$data->reference_paiement?>
                                     </th>
                                     <td class="px-4 py-1.5 ">
-                                        20/07/2024
+                                        <?=$data->date_paiement?>
                                     </td>
                                     <td class="px-4 py-1.5">
-                                        15.000
+                                        <?=$data->montant_paiement?>
                                     </td>
                                     <td class="px-6 py-1.5">
                                         <a href="Detail dette.html"

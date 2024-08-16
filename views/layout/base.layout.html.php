@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dette</title>
     <link rel="stylesheet" href="../public/css/output.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
     <link rel="stylesheet"
@@ -29,7 +32,7 @@
                             </svg>
                         </button>
                         <a href="https://flowbite.com" class="flex ms-2 md:me-24">
-                            <img src="../public/assets/logo.png" class=" w-  h-8 me-2" alt="FlowBite Logo" />
+                            <img src="../assets/logo.png" class=" w-  h-8 me-2" alt="FlowBite Logo" />
                             <span
                                 class="self-center text-xl font-semibold sm:text-xl whitespace-nowrap text-white dark:text-white">
                                 NIAKUL DARA
@@ -43,7 +46,7 @@
                                     class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                                     aria-expanded="false" data-dropdown-toggle="dropdown-user">
                                     <span class="sr-only">Open user menu</span>
-                                    <img class="w-8 h-8 rounded-full" src="<?=ROOT?>/public/assets/user.png" alt="user photo">
+                                    <img class="w-8 h-8 rounded-full" src="../assets/client1.png" alt="user photo">
                                 </button>
                             </div>
                             <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
@@ -92,7 +95,7 @@
             <div class="h-full px-3 pb-4 overflow-y-auto bg-indigo-600 dark:bg-gray-800">
                 <ul class="space-y-2 font-medium">
                     <li>
-                        <a href="dashbord.html"
+                        <a href="<?= WEBROOT ?>/?controller=dashboard&action=dash"
                             class="flex items-center p-2 text-gray-900 rounded-lg text-white  dark:text-white hover:bg-sky-900 dark:hover:bg-gray-700 group">
                             <span class="material-symbols-outlined px-2"> dashboard </span>
                             Dashboard
@@ -129,7 +132,7 @@
                 </ul>
                 <ul class="mt-28  font-medium">
                     <li>
-                        <a href="index.html"
+                        <a href="<?= WEBROOT ?>/?controller=login&action=logout"
                             class="flex items-center p-2 text-gray-900 rounded-lg text-white dark:text-white hover:bg-sky-900 dark:hover:bg-gray-700 group">
                             <span class="material-symbols-outlined px-2"> date_range </span>
                             Deconnexion
@@ -143,6 +146,13 @@
 
 
 
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"></script>
 
 <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
     

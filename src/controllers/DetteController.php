@@ -46,13 +46,31 @@ private function FindDetteNonSolde(){
 }
 
 private function AddDette(){
-    parent::rendorView("dette/ajout.Dette");
+    $datas=[];
+    if (isset($_POST["tel"])) {
+        $datas=$this->detteModel->FindDetteByTel($_POST["tel"]);
+        // var_dump($datas);
+        // die;
+    }
+    
+    if (isset($_POST["ref"])) {
+        $datas=$this->detteModel->FindArticleByRef($_POST["ref"]);
+        // var_dump($datas);
+        // die;
+    }
+    parent::rendorView("dette/ajout.Dette",["datas"=>$datas]);
 
 }
+
+
 private function DetailDette(){
-    parent::rendorView("dette/detail.Dette");
+    // var_dump($_REQUEST);
+    // die;
+    parent::rendorView("dette/detail.Dette",["datas"=>$this ->detteModel->FindDetailDetteByClient(intval($_REQUEST['idcl']))]);
 
 }
+
+
 
 
 

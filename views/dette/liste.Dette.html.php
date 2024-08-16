@@ -1,3 +1,17 @@
+<?php
+if(!isset($_GET["page"])) {
+    $page=1;
+}else{$page=$_GET["page"];}
+$taille=count($datas);
+$nombre_ligne=3;
+$nombre_page=ceil($taille/$nombre_ligne);
+// var_dump($nombre_page );
+$position=($page-1)*$nombre_ligne;
+$tab=array_slice($datas , $position, $nombre_ligne);
+// var_dump($tab);
+?>
+
+
 
     <div class="p-4 sm:ml-48">
             <div class="p-2  rounded-lg dark:border-gray-700 mt-9 h-full">
@@ -92,7 +106,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($datas as $data):?>
+                            <?php foreach ($tab as $data):?>
                                 <tr
                                     class=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                                     <th scope="row"
@@ -124,7 +138,7 @@
                                             type="button">
                                             Payer
                                         </button>
-                                        <a href="<?= WEBROOT ?>/?controller=dette&action=detail&id"
+                                        <a href="<?= WEBROOT ?>/?controller=dette&action=detail&idcl=<?= $data->idcl ?>&idd=<?= $data->idd ?>"
                                             class=" mx-2 font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
                                     </td>
                                 </tr>
@@ -184,26 +198,13 @@
                                     <a href="#"
                                         class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
                                 </li>
+                                <?php for ($i=1; $i <=$nombre_page ; $i++):?>
                                 <li>
-                                    <a href="#"
-                                        class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
+                                    <a href="<?=WEBROOT;?>/?controller=dette&action=dette&page=<?= $i?>"
+                                        class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"><?= $i ?></a>
                                 </li>
-                                <li>
-                                    <a href="#"
-                                        class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-                                </li>
-                                <li>
-                                    <a href="#" aria-current="page"
-                                        class="flex items-center justify-center px-4 h-10 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
-                                </li>
+                                <?php endfor?>
+
                                 <li>
                                     <a href="#"
                                         class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>

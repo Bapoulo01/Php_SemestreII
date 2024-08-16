@@ -8,7 +8,11 @@
             "App\\Controllers\\": "src/controllers/",
             "App\\Core\\": "src/core/",
             "App\\Core\\Validator\\": "src/core/validator/",
-            "App\\Core\\Session\\": "src/core/validator/"
+            "App\\Core\\Session\\": "src/core/session/",
+            "App\\Core\\Controller\\": "src/core/controller/",
+            "App\\Core\\Model\\": "src/core/model/",
+            "App\\Core\\Router\\": "src/core/router/"
+
         }
     },
     "authors": [
