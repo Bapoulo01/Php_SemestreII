@@ -44,7 +44,9 @@ public function showForm(){
 }
 
 private function login(){
-   
+    if(!Validator::isEmpty("login","login est obligatoire")){
+        Validator::isEmail("login");
+    }
         Validator::isEmail("login");
     
     Validator::isEmpty("mdp","");

@@ -27,19 +27,19 @@
             <div class="flex align-center justify-around  w-full ">
                 <div class="w-1/2 h-48 border border-gray-200 rounded-lg shadow flex-col align-center justify-around ">
                     <div class="flex align-center justify-around w-full h-24">
-                        <img src="../public/assets/user.png" class="bg-blue-50 w-24 h-24 rounded-full mt-2"></img>
+                        <img src="../public/asset/" class="bg-blue-50 w-24 h-24 rounded-full mt-2"></img>
                         <div class="w-64 h-24 mt-2 flex-col">
-                            <h5>Prenom : Amadou </h5>
-                            <h5>Nom: Ba </h5>
-                            <h5>Tel: 778087261 </h5>
-                            <h5>Adresse: Keur Massar </h5>
+                            <h5>Prenom : <?=$datas[0]->prenom?></h5>
+                            <h5>Nom:  <?=$datas[0]->nom?> </h5>
+                            <h5>Tel: <?=$datas[0]->telephone?></h5>
+                            <h5>Adresse: <?=$datas[0]->adresse?></h5>
                         </div>
                     </div>
-                    <div class="w-64 h-24 mt-5 mx-3 flex-col">
+                    <!-- <div class="w-64 h-24 mt-5 mx-3 flex-col">
                         <h5 class="font-medium">Total Dette: 25.000 </h5>
                         <h5 class="font-medium">Total Verse: 10.000 </h5>
                         <h5 class="font-medium text-lime-700">Montant Du: 15.000 </h5>
-                    </div>
+                    </div> -->
 
 
                 </div>
@@ -61,6 +61,7 @@
                             </div>
                         </div>
                         <input type="hidden" name="idd" value="<?=$_REQUEST["idd"]?>" >
+                        <input type="hidden" name="idcl" value="<?=$_REQUEST["idcl"]?>" >
                         <input type="hidden" name="controller" value="paiement">
                         <div class="w-full flex align-center justify-center py-3">
                             <button type="submit" name="action" value="paiement"
@@ -102,10 +103,10 @@
                                     <?=$data->prix_unitaire?>
                                     </td>
                                     <td class="px-6 py-1.5">
-                                        03
+                                    <?=$data->qte?>
                                     </td>
                                     <td class="px-6 py-1.5">
-                                        3.000
+                                    <?=$data->Total?>
                                     </td>
                                 </tr>
                                 <?php endforeach;?>  
@@ -140,22 +141,25 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            <?php foreach ($paiements as $data):?>
                                 <tr
                                     class=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                                     <th scope="row" class="px-4 py-1.5 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        <?=$data->reference_paiement?>
+                                        <?=$data->referencep?>
                                     </th>
                                     <td class="px-4 py-1.5 ">
-                                        <?=$data->date_paiement?>
+                                        <?=$data->datep?>
                                     </td>
                                     <td class="px-4 py-1.5">
-                                        <?=$data->montant_paiement?>
+                                        <?=$data->montantpay?>
                                     </td>
                                     <td class="px-6 py-1.5">
-                                        <a href="Detail dette.html"
+                                        <a href="#"
                                         class=" mx-2 font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
                                     </td>
                                 </tr>
+                                <?php endforeach;?>  
+
                             </tbody>
                         </table>
                     </div>

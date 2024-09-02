@@ -2,12 +2,16 @@
 
 define("ROOT","C:/Users/HP/OneDrive/Bureau/Projet Semestre II/Projet Php");
 define('WEBROOT', 'http://localhost:8900');
-
 require_once ROOT."/vendor/autoload.php";
+
+if (session_status()==PHP_SESSION_NONE) {
+    session_start();
+}
 
 use App\Controllers\ {
     DetteController,
     LoginController,
+    ClientController,
     PaiementController,
     DashboardController
 
@@ -19,17 +23,17 @@ if (isset($_REQUEST['controller'])) {
         $controller = new DetteController();
         // $controller->index();
     }
-    elseif ($controller == 'detail') {
-        $controller = new DetteController();
-        // $controller->index();
+    elseif ($controller == 'client') {
+        $controller = new ClientController();
     }
+    // elseif ($controller == 'js') {
+    //     $controller = new ClientJSController();
+    // }
     elseif ($controller == 'paiement') {
         $controller = new PaiementController();
         // $controller->index();
     }
     elseif ($controller == 'login') {
-        // var_dump("ok");
-        // die;
         $controller = new LoginController();
         // $controller->index();
     }

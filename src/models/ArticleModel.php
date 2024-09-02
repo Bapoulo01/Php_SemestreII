@@ -10,6 +10,11 @@ class ArticleModel extends Model{
         return $this->executeSelect($sql);
     }
 
+    public function ShowArticle(){ 
+        $sql = "SELECT * FROM article";
+        return $this->executeSelect($sql);
+    }
+
 
 
 

@@ -109,7 +109,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="index.html"
+                        <a href="<?= WEBROOT ?>/?controller=client&action=client"
                             class="flex items-center p-2 text-gray-900 rounded-lg text-white dark:text-white hover:bg-sky-900 dark:hover:bg-gray-700 group">
                             <span class="material-symbols-outlined px-2"> date_range </span>
                             Liste Client

@@ -1,13 +1,43 @@
 <?php
-$client = [];
-$article = [];
-if (!empty($datas)) {
-    $client = $datas[0];
-    $article = $datas[0];
+
+//fonction pour calculer le montant total
+function MontantTotalDette(){
+    $montantTotal=0;
+    if (isset($_SESSION["tabArticle"])) {
+        foreach ($_SESSION["tabArticle"] as $article) {
+        $montantTotal+=$article["total"];
+    }
+    }
+    
+    return $montantTotal;
 }
-// if (!empty($datas)) {
-//     $article = $datas[0];
-// }
+
+
+$total=MontantTotalDette();
+$errors = [];
+$client = [];
+$article=[];
+$tabArticle=[];
+
+if (isset($_SESSION["errors"])) {
+    $errors = $_SESSION["errors"];
+    unset($_SESSION["errors"]);
+}
+if (isset($_SESSION["client"])) {
+    $client = $_SESSION["client"];  
+    // var_dump($client);
+    // die;
+}
+if (isset($_SESSION["article"])) {
+    $article = $_SESSION["article"];  
+}
+if (isset($_SESSION["tabArticle"])) {
+    $tabArticle = $_SESSION["tabArticle"];  
+}
+
+//  var_dump($client);
+//     die;
+
 
 ?>
         <div class="p-4 sm:ml-48">
@@ -53,13 +83,13 @@ if (!empty($datas)) {
                     <div class="w-full mt-3  flex align-center justify-center ">
                         <div class="flex align-center justify-center w-60 mt-5 ">
                             <label for="" class="text-black-900 mx-2 mt-2">Prenom</label>
-                            <input type="text" id="simple-search" name="prenom" value="<?php echo $client->prenom ?? ''; ?>"
+                            <input type="text" id="simple-search" name="prenom" value="<?= $client->prenom ?? ''; ?>"
                                 class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 disabled />
                         </div>
                         <div class="flex align-center justify-center w-60 mt-5">
                             <label for="" class="text-black-900 mx-2 mt-2">Nom</label>
-                            <input type="text" id="simple-search" name="nom" value="<?php echo $client->nom ?? ''; ?>"
+                            <input type="text" id="simple-search" name="nom" value="<?= $client->nom ?? ''; ?>"
                                 class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 disabled />
                         </div>
@@ -67,7 +97,7 @@ if (!empty($datas)) {
                 </div>
                 <div class="w-1/2 h-40 border border-gray-200 rounded-lg shadow mx-3 flex-col ">
                     <div class="">
-                        <form action="<?php echo WEBROOT; ?>" method="post" class="flex items-center py-0">
+                        <form action="<?= WEBROOT; ?>" method="post" class="flex items-center py-0">
                             <label for="" class="text-black-900 mx-2">ref</label>
                             <div class="relative w-60 mt-2">
                                 <input type="text" id="simple-search" name="ref"
@@ -105,13 +135,14 @@ if (!empty($datas)) {
             <div class="flex mt-2">
                 <div class="w-4/5 h-14  rounded-lg  ">
                     <div>
-                        <form class="flex items-center py-0">
+                        <form action="<?= WEBROOT; ?>" method="post" class="flex items-center py-0">
                             <label for="" class="text-black-900 mx-2">Qte</label>
                             <div class="relative w-96 mt-2">
-                                <input type="text" id="simple-search"
+                                <input type="text" id="simple-search" name=qte
                                     class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                             </div>
-                            <button type="submit"
+                            <input type="hidden" name="controller" value="dette">
+                            <button type="submit" name="action" value="addDette"
                                 class="bg-sky-900  p-2.5 ms-2 mt-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 OK
                             </button>
@@ -120,16 +151,16 @@ if (!empty($datas)) {
                 </div>
             </div>
             <div class="flex mt-3">
-                <div class="w-full h-56 border border-gray-200 rounded-lg shadow ">
+                <div class="w-full h-48 border border-gray-200 rounded-lg shadow ">
                     <div class="w-full">
-                        <div class=" w-1/2 relative overflow-x-auto sm:rounded-lg mx-3 mt-2">
+                        <div class=" w-3/4 relative overflow-x-auto sm:rounded-lg mx-3 mt-2">
                             <table
-                                class="w-full  text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border">
+                                class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                 <thead
                                     class="text-xs text-white uppercase bg-indigo-400 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
                                         <th scope="col" class="px-6 py-3">
-                                            Client
+                                            Libelle
                                         </th>
                                         <th scope="col" class="px-6 py-3">
                                             Prix
@@ -143,37 +174,28 @@ if (!empty($datas)) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <tr
-                                class=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                                <th scope="row"
-                                    class="px-6 py-1.5 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <!-- Article1 -->
-                                </th>
-                                <td class="px-6 py-1.5 ">
-                                    <!-- 1.000 -->
-                                </td>
-                                <td class="px-6 py-1.5">
-                                    <!-- 03 -->
-                                </td>
-                                <td class="px-6 py-1.5">
-                                    <!-- 3.000 -->
-                                </td>
-                            </tr>
-
+                                    <?php foreach ($tabArticle as $article): ?>
+                                        <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                            <td class=""><?= $article['libelle'] ?></td>
+                                            <td><?= $article['qte'] ?></td>
+                                            <td><?= $article['prixU'] ?></td>
+                                            <td><?= $article['total'] ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div class=" mx-2 mt-5 h-6 mb-5">
-                        <button type="button" class="text-green-900 text-4xl hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                            Total :
-                        </button>
+                    <div class=" mx-2 mt-5">
+                        <span class=" mx-2 text-green-900 text-xl font-bold">Total : <?= $total?></span>
                     </div>
-                    <div class="w-full flex align-center justify-end py-5">
-                        <button type="button" class="w-48  text-white bg-sky-900  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Enregistrer</button>
-                        
-                    </div>
+                    <form action="<?=WEBROOT?>" method="post">
+                        <input type="hidden" name="controller" value="dette">
+                        <input type="hidden" name="montant" value="<?= $total?>">
+                        <div class="w-full flex align-center justify-end">
+                            <button type="submit" name="action" value="SaveDette"  class="w-48  text-white bg-sky-900  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Enregistrer</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <!-- <div class="w-full h-64 border border-gray-200 rounded-lg shadow mb-2 "></div> -->
         </div>

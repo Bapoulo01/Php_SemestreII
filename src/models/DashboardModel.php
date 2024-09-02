@@ -11,5 +11,14 @@ class DashboardModel extends Model{
         return $this->executeSelect($sql);
     }
 
+    public function findDettesDuJour()
+{ 
+    $sql = "SELECT COUNT(*) AS nombreDettes 
+            FROM `dette` 
+            WHERE `dated` = CURDATE()";
+    return $this->executeSelect($sql);
+}
+
+
 
 }

@@ -70,6 +70,8 @@ CREATE TABLE article (
 CREATE TABLE artDette(
    idA int NOT NULL,
    idd int NOT NULL,
+   qtecmd VARCHAR(15) NOT NULL,
+   prixAchat VARCHAR(15) NOT NULL,
    FOREIGN KEY(idA) REFERENCES article(idA),
    FOREIGN KEY(idd) REFERENCES dette(idd)
 );
@@ -127,13 +129,13 @@ INSERT INTO article (idA,refA,libelle, prixU, qtestock) VALUES
 (NULL,'A0005','Mais', '250', '500'),
 (NULL,'A0006','Lait en poudre', '150', '500'),
 
-INSERT INTO artDette (idA, idd) VALUES 
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5),
-(6, 6)
+INSERT INTO artDette (idA, idd,qtecmd,prixAchat)  VALUES 
+(1, 1,10,500),
+(2, 2,20,700),
+(3, 3,5,250),
+(4, 4,10,1750),
+(5, 5,5,250),
+(6, 6,15,150)
 
 
 

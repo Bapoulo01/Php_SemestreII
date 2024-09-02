@@ -3,7 +3,7 @@
 namespace App\Controllers;
 use App\Models\DetteModel;
 
-class ArticleController {
+class ArticleController extends Controller {
     private ArticleModel $articleModel;
 
     public function __construct(){
@@ -11,6 +11,8 @@ class ArticleController {
         $this->load();
     }
     public function load() {
+        $datas=$this->detteModel->ShowArticle();
+        parent::rendorView("article/liste.article",["datas"=>$datas]);
 
         
     }

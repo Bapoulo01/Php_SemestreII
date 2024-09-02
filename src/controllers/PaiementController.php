@@ -27,14 +27,16 @@ public function load(){
             $this->paiementModel->Addpay($data);
         }
 }
-        parent::rendorView("dette/ajout.Dette",["datas"=>$datas]);
+        // parent::rendorView("dette/ajout.Dette",["datas"=>$datas]);
+        header("Location:".WEBROOT."/?controller=dette&action=detail&idcl=".$_REQUEST['idcl']."&idd=".$_REQUEST['idd']);
+        exit;
 
 
 }
 public function genererNumeroPAY()
     {
         $n = mt_rand(0, 9999999999);
-        return 'P' . str_pad($n, 10, '0', STR_PAD_LEFT);
+        return 'P' . str_pad($n, 5, '0', STR_PAD_LEFT);
     }
 
 

@@ -16,11 +16,12 @@ class DashboardController extends Controller {
         if (isset($_REQUEST["action"])) {
             if ($_REQUEST["action"]=="dash") {
                 $datas=$this->dashboardModel->findNumberClient();
-                // var_dump($datas);
+                $detteCount=$this->dashboardModel->findDettesDuJour();
+                // var_dump($detteCount);
                 // die;
                 // parent::rendorView("dashboard/liste");
 
-                parent::rendorView("dashboard/liste",["datas"=>$datas]);
+                parent::rendorView("dashboard/liste",["datas"=>$datas,"detteCount"=>$detteCount]);
             }
         }
  

@@ -6,7 +6,9 @@ use App\Core\Model;
 class PaiementModel extends Model{
 
     public function FindPayementByIdDette(int $id){
-        $sql = "SELECT * FROM paiement WHERE idp = '$id'";
+        $sql = "SELECT * FROM paiement WHERE idd = '$id'";
+        return $this->executeSelect($sql);
+
     }
 
     public function Addpay(array $data)

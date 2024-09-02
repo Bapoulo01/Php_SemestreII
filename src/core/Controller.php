@@ -24,7 +24,7 @@ class Controller
     public function redirectToRoute(array $route)
     {
         extract($route);
-        header('Location:'.WEBROOT."/controller=$controller&action=$action");
+        header('Location:'.WEBROOT."/?controller=$controller&action=$action");
         exit;
     }
 }

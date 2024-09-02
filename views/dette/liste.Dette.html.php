@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 if(!isset($_GET["page"])) {
     $page=1;
 }else{$page=$_GET["page"];}
@@ -9,7 +9,7 @@ $nombre_page=ceil($taille/$nombre_ligne);
 $position=($page-1)*$nombre_ligne;
 $tab=array_slice($datas , $position, $nombre_ligne);
 // var_dump($tab);
-?>
+?> -->
 
 
 
@@ -30,7 +30,7 @@ $tab=array_slice($datas , $position, $nombre_ligne);
                     <form action="<?= WEBROOT?>"  method="post" class="flex items-center max-w-sm mx-auto">
                         <label for="" class="text-black-900 mx-2">Tel</label>
                         <div class="relative w-full">
-                            <input type="text" id="simple-search" name="telSearch"
+                            <input type="text" id="simple-search" name="telSearch" value="<?= isset($_POST['telSearch']) ? ($_POST['telSearch']) : '' ?>"
                                 class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Search branch name..." />
                         </div>
@@ -60,7 +60,7 @@ $tab=array_slice($datas , $position, $nombre_ligne);
                     <form action="<?= WEBROOT?>"  method="post"  class="flex items-center max-w-sm mx-auto">
                         <label for="" class="text-black-900 mx-2">Date</label>
                         <div class="relative w-full">
-                            <input type="date" id="simple-search"  name="dateSearch"
+                            <input type="date" id="simple-search"  name="dateSearch" value="<?= isset($_POST['dateSearch']) ? ($_POST['dateSearch']) : '' ?>"
                                 class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </div>
                         <input type="hidden" name="controller" value="dette">
@@ -106,7 +106,7 @@ $tab=array_slice($datas , $position, $nombre_ligne);
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($tab as $data):?>
+                            <?php foreach ($datas as $data):?>
                                 <tr
                                     class=" odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                                     <th scope="row"
@@ -192,7 +192,7 @@ $tab=array_slice($datas , $position, $nombre_ligne);
 
                     </div>
                     <div class="w-full mt-2 flex align-center justify-center">
-                        <nav aria-label="Page navigation example">
+                        <!-- <nav aria-label="Page navigation example">
                             <ul class="inline-flex -space-x-px text-base h-10 ">
                                 <li>
                                     <a href="#"
@@ -210,12 +210,36 @@ $tab=array_slice($datas , $position, $nombre_ligne);
                                         class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
                                 </li>
                             </ul>
-                        </nav>
+                        </nav> -->
+                        <nav aria-label="Page navigation example">
+                                <ul class="inline-flex -space-x-px text-base h-10 ">
+                                    <li>
+                                        <a href="#"
+                                            class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                            class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                            class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" aria-current="page"
+                                            class="flex items-center justify-center px-4 h-10 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                            class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
                     </div>
                 </div>
             </div>
         </div>
 
 
-    <!-- <script src="../path/to/flowbite/dist/flowbite.min.js"></script> -->
+    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
 
